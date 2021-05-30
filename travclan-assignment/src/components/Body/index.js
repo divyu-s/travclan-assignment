@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import ReactPaginate from "react-paginate";
-import { getByDisplayValue } from "@testing-library/dom";
+import { useStateValue } from "../../datalayer/StateProvider";
 
 const API = `https://intense-tor-76305.herokuapp.com/merchants`;
 export default function Index() {
-  const [customersList, setCustomersList] = useState([]);
+  const [store = { customerList: [] }, dispatch] = useStateValue();
+  const customersList = store.customerList;
   const [pageNumber, setPageNumber] = useState(0);
   const [flag, setFlag] = useState(true);
 
@@ -13,14 +14,20 @@ export default function Index() {
     const getDataFromApi = async () => {
       const customerList = await fetch(API);
       const customerListJson = await customerList.json();
-      let filterCustomerListJson = customerListJson.filter((item)=>item.firstname)
-      setCustomersList(filterCustomerListJson);
+      let filterCustomerListJson = customerListJson.filter(
+        (item) => item.firstname
+      );
+      dispatch({
+        type: "ADD_CUSTOMERS",
+        list: filterCustomerListJson,
+      });
+      //setCustomersList(filterCustomerListJson);
     };
     getDataFromApi();
-  }, []);
+  },[]);
 
   const getBid = (bids) => {
-      //console.log(bids);
+    //console.log(bids);
     if (bids.length === 0) {
       return 0;
     }
@@ -76,7 +83,7 @@ export default function Index() {
           {displayData.map((item, index) => (
             <tr key={index}>
               <td>
-                <img className="avater" src={item.avatarUrl} />
+                <img className="avater" src={item.avatarUrl} alt="user avater"/>
                 {" " + item.firstname + " " + item.lastname}
               </td>
               <td>{item.email}</td>
