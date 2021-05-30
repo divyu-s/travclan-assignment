@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-export default function index() {
+export default function Index() {
     return (
         <div className="header">
             TravClan Assignment App
