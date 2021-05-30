@@ -1,0 +1,14 @@
+import './style.css';
+import Header from '../Header';
+import Body from '../Body';
+
+function App() {
+  return (
+    <div className="App">
+        <Header/>
+        <Body/>
+     </div>
+  );
+}
+
+export default App;
