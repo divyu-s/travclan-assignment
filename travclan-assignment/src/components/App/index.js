@@ -1,14 +1,14 @@
-import './style.css';
-import Header from '../Header';
-import Body from '../Body';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./style.css";
+import Header from "../Header";
+import Body from "../Body";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
-        <Header/>
-        <Body/>
-     </div>
+      <Header />
+      <Body />
+    </div>
   );
 }
 

@@ -24,7 +24,7 @@ export default function Index() {
       //setCustomersList(filterCustomerListJson);
     };
     getDataFromApi();
-  },[]);
+  }, []);
 
   const getBid = (bids) => {
     //console.log(bids);
@@ -69,7 +69,8 @@ export default function Index() {
           {flag ? "Get Customer's By Min Bid" : "Get Customer's By Max Bid"}
         </button>
       </div>
-      <table className="table">
+      <div className="table-responsive">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Customer Name</th>
@@ -83,7 +84,11 @@ export default function Index() {
           {displayData.map((item, index) => (
             <tr key={index}>
               <td>
-                <img className="avater" src={item.avatarUrl} alt="user avater"/>
+                <img
+                  className="avater"
+                  src={item.avatarUrl}
+                  alt="user avater"
+                />
                 {" " + item.firstname + " " + item.lastname}
               </td>
               <td>{item.email}</td>
@@ -94,6 +99,7 @@ export default function Index() {
           ))}
         </tbody>
       </table>
+      </div>
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
